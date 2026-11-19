@@ -56,6 +56,10 @@ ligados a este repositório. Cada um tem o seu **Root Directory** em `apps/paine
 `apps/campo`, e lê o `vercel.json` de lá — rewrites de SPA e, no campo, os headers do
 service worker.
 
+Como é monorepo, os dois projetos precisam de **Include files outside the root directory
+in the Build Step** ligado (é o padrão): sem isso a Vercel não enviaria `packages/shared`
+nem o `package.json` da raiz, e o build quebraria na importação do pacote compartilhado.
+
 **Por push.** Todo commit em `main` republica os dois em produção; qualquer outra
 branch gera deploy de preview.
 
