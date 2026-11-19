@@ -1,0 +1,104 @@
+/* Base compartilhada pelos dois produtos. Importar depois de tokens.css. */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--tv-bg);
+  color: var(--tv-body);
+  font-family: var(--tv-font);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--tv-ink);
+  line-height: 1.25;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--tv-teal-900);
+}
+
+a:hover {
+  color: var(--tv-ink);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco sempre visível — o painel é operado muito por teclado. */
+:focus-visible {
+  outline: 3px solid var(--tv-teal-900);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Números sempre tabulares: nada de dígitos dançando ao atualizar. */
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pular para o conteúdo — primeiro foco da página. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -64px;
+  z-index: 50;
+  background: var(--tv-teal-900);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: var(--tv-radius-md);
+  text-decoration: none;
+  transition: top 0.12s ease-out;
+}
+
+.skip-link:focus {
+  top: 8px;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

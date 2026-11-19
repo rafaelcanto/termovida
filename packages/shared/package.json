@@ -1,0 +1,14 @@
+{
+  "name": "@termovida/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tokens, tipos e dataset mockado compartilhados pelos dois produtos do TermoVida.",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/tokens.css",
+    "./base.css": "./src/base.css",
+    "./mapa": "./src/mapa.ts"
+  }
+}

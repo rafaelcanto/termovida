@@ -1,0 +1,26 @@
+{
+  "name": "termovida",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TermoVida — alerta de calor para idosos 65+ (Grupo 22 · FIAP Global Solution 2026.2)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:painel": "npm run dev -w @termovida/painel",
+    "dev:campo": "npm run dev -w @termovida/campo",
+    "build": "npm run build -w @termovida/painel && npm run build -w @termovida/campo",
+    "build:painel": "npm run build -w @termovida/painel",
+    "build:campo": "npm run build -w @termovida/campo",
+    "preview:painel": "npm run preview -w @termovida/painel",
+    "preview:campo": "npm run preview -w @termovida/campo",
+    "typecheck": "npm run typecheck -w @termovida/painel && npm run typecheck -w @termovida/campo"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

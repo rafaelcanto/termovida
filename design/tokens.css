@@ -1,0 +1,68 @@
+/* TermoVida — design tokens
+   Extraídos do pitch do Grupo 22 (GS 2026.2 · CitizenTech).
+   Valem para o Painel do gestor (web) e para o App do ACS (PWA). */
+
+:root {
+  /* Superfícies e texto */
+  --tv-bg:        #FFF5EE; /* creme, fundo de página */
+  --tv-surface:   #FFFFFF; /* cartões */
+  --tv-surface-2: #F7F2EC; /* cartão de item já concluído */
+  --tv-line:      #EADFD6; /* bordas e divisórias */
+  --tv-line-soft: #F4E9E0; /* divisória interna de tabela */
+  --tv-ink:       #1C2633; /* títulos */
+  --tv-body:      #3A4459; /* texto corrido */
+  --tv-muted:     #5A6372; /* texto secundário, rótulos */
+
+  /* Teal — cuidado, ações, "tudo certo" */
+  --tv-teal-900:  #0B7466; /* texto teal, botão principal, barra do app */
+  --tv-teal-950:  #095C51; /* faixa dentro da barra do app */
+  --tv-teal-600:  #0E9C88; /* preenchimentos, pontos, barras */
+  --tv-teal-100:  #DDF4EF; /* fundo de aviso positivo */
+
+  /* Família quente — risco. Nunca usada para ação. */
+  --tv-amber:     #F2A23A; /* nível Atenção (preenchimento) */
+  --tv-amber-ink: #8A5A08; /* texto âmbar sobre creme (contraste) */
+  --tv-coral:     #E4572E; /* nível Alto (preenchimento) */
+  --tv-coral-100: #FDE6DE; /* fundo de faixa de alerta */
+  --tv-red-900:   #B83A1B; /* nível Extremo e TODO texto de risco */
+
+  /* Tipografia */
+  --tv-font: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Raios */
+  --tv-radius-sm:  7px;  /* etiquetas */
+  --tv-radius-md: 10px;  /* botões e campos do painel */
+  --tv-radius-lg: 14px;  /* cartões; botões e campos do app */
+  --tv-radius-pill: 999px;
+
+  /* Alvos de toque */
+  --tv-tap-web: 44px;
+  --tv-tap-app: 48px;    /* mínimo no app de campo */
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Decisão de projeto: não há tema escuro.
+     O app é usado no sol e o painel é projetado em reunião;
+     ambos ficam sempre no tema claro de alto contraste. */
+}
+
+/*
+REGRAS DE COR QUE NÃO SE QUEBRAM
+--------------------------------
+1. Âmbar (--tv-amber) e coral (--tv-coral) só como PREENCHIMENTO.
+   Para texto de risco sobre creme/branco use --tv-red-900;
+   para texto âmbar use --tv-amber-ink.
+2. Nível de risco nunca é comunicado só pela cor: a etiqueta
+   sempre traz a palavra (Baixo / Atenção / Alto / Extremo).
+3. Tinta sobre --tv-teal-900 e --tv-red-900 é branca.
+   Sobre --tv-amber é --tv-ink.
+4. Números (temperatura, contagens, horas) sempre com
+   font-variant-numeric: tabular-nums.
+
+ESCALA DE RISCO DE CALOR (limiar de 32,8 °C vindo dos dados)
+------------------------------------------------------------
+Baixo    < 32,8 °C          --tv-teal-600   sem disparo
+Atenção  32,8 a 33,9 °C     --tv-amber      SMS, sem ligação
+Alto     34,0 a 35,4 °C     --tv-coral      SMS + voz + fila de visitas
+Extremo  >= 35,5 °C         --tv-red-900    + rádio comunitária e Defesa Civil
+*/

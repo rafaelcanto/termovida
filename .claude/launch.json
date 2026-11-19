@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "painel",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:painel"],
+      "port": 5173
+    },
+    {
+      "name": "campo",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:campo"],
+      "port": 5174
+    }
+  ]
+}
