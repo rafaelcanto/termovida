@@ -28,9 +28,16 @@ publicar() {
   # --delete mantém a pasta igual ao dist, mas preserva o vínculo .vercel.
   rsync -a --delete --exclude '.vercel' --exclude 'vercel.json' \
     "$RAIZ/apps/$app/dist/" "$SAIDA/$projeto/"
-  # O mesmo vercel.json que o deploy por push usa, para os dois caminhos não
-  # divergirem. Só `framework`/`buildCommand` não valem num deploy estático.
-  cp "$RAIZ/apps/$app/vercel.json" "$SAIDA/$projeto/vercel.json"
+  # Reaproveita o vercel.json do app, para os dois caminhos não divergirem, mas
+  # só as chaves de runtime: aqui a pasta já está buildada, e deixar `framework`
+  # ou `buildCommand` faria a Vercel tentar buildar de novo lá dentro e falhar.
+  python3 -I -c '
+import json, sys
+origem, destino = sys.argv[1], sys.argv[2]
+cfg = json.load(open(origem, encoding="utf-8"))
+runtime = {k: v for k, v in cfg.items() if k in ("rewrites", "headers", "redirects", "cleanUrls", "trailingSlash")}
+json.dump(runtime, open(destino, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+' "$RAIZ/apps/$app/vercel.json" "$SAIDA/$projeto/vercel.json"
 
   echo "==> publicando $projeto"
   vercel deploy "$SAIDA/$projeto" --prod --yes
