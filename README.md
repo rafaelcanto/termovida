@@ -51,15 +51,24 @@ continua de pé, servido pelo cache do service worker, com a lista vinda do Inde
 
 ## Publicar
 
+São dois projetos separados na Vercel: `termovida-painel` e `termovida-campo`, ambos
+ligados a este repositório. Cada um tem o seu **Root Directory** em `apps/painel` e
+`apps/campo`, e lê o `vercel.json` de lá — rewrites de SPA e, no campo, os headers do
+service worker.
+
+**Por push.** Todo commit em `main` republica os dois em produção; qualquer outra
+branch gera deploy de preview.
+
+**Pela máquina.** Caminho alternativo, para publicar sem passar pelo Git:
+
 ```bash
 vercel login
-./scripts/deploy.sh
+./scripts/deploy.sh          # os dois
+./scripts/deploy.sh campo    # só um
 ```
 
-São dois projetos separados na Vercel (`termovida-painel` e `termovida-campo`). O build
-roda na máquina e só a pasta `dist` de cada app é enviada; o `vercel.json` que vai junto
-traz as rewrites de SPA e os headers do service worker. `./scripts/deploy.sh painel` ou
-`./scripts/deploy.sh campo` publica um só.
+O build roda aqui e só a `dist` de cada app é enviada, com o mesmo `vercel.json` do
+deploy por push, para os dois caminhos não divergirem.
 
 ## Estrutura
 
